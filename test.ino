@@ -74,7 +74,7 @@ class myAnimation : public Animation
 
 
  myAnimation anim=myAnimation(leds,0,20); // we initialize the animation (the global led strip, the first led, the last led)
-myAnimation2 anim2=myAnimation2(leds,21,49);
+myAnimation2 anim2=myAnimation2(leds,21,67);
 
 void setup() {
 
