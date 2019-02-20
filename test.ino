@@ -85,6 +85,6 @@ void setup() {
 
 void loop() {
   anim.loop(); //to execute the animation
-  anim.loop();
+  anim2.loop();
 
 }
