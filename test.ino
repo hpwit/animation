@@ -3,7 +3,7 @@
 
 
 #include "FastLED.h"
-#inlcude "animation.h"
+#include "animation.h"
 FASTLED_USING_NAMESPACE
 
 #define NUM_LEDS 68
