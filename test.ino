@@ -13,7 +13,7 @@ CRGB leds[NUM_LEDS];
 
 
 
-class myAnimation2 : public Animation
+class rainbowLeftRight : public Animation
  {
  
  /* 
@@ -30,8 +30,8 @@ class myAnimation2 : public Animation
     
     void setup()
     { //put here the code if you need to initialized the variables this it not necessary
-      fill_solid(ledsa,num_leds,CRGB::Blue);
-      k=300;
+      
+      k=0;
     }
     void animation() override //this is the function that will be executed each time
     {
@@ -40,51 +40,57 @@ class myAnimation2 : public Animation
       {
         ledsa[i]=CHSV((i+k)*255/num_leds,255,255);
       }  
-      k=(k+10)%num_leds;
+      k=(k+10)%255;
     } 
     
  };
 
 
 //a second animation 
-class myAnimation : public Animation
+class rainbowRightLeft : public Animation
  {
    private:
     int k;
    public:
     using Animation::Animation;
     
-    void setup()
-    {
-      k=0;
+     void setup()
+    { //put here the code if you need to initialized the variables this it not necessary
+      //fill_solid(ledsa,num_leds,CRGB::Blue);
+      k=255;
     }
-    void animation() override
+    void animation() override //this is the function that will be executed each time
     {
-      fill_solid(ledsa,num_leds,CRGB::Green);
-      for(int i=0;i<=k;i++)
+      //change the code below
+      for(int i=0;i<=num_leds;i++)
       {
-        ledsa[i]=CRGB::Red;
+        ledsa[i]=CHSV((i+k)*255/num_leds,255,255);
       }  
-      
-      k=(k+1)%num_leds;
+      k=k-10;
+      if(k<0)
+       k=255;
     } 
     
  };
 
 
 
- myAnimation anim=myAnimation(leds,0,20); // we initialize the animation (the global led strip, the first led, the last led)
-myAnimation2 anim2=myAnimation2(leds,21,67);
-
+ rainbowRightLeft anim=rainbowRightLeft(leds,0,16); // we initialize the animation (the global led strip, the first led, the last led)
+rainbowLeftRight anim2=rainbowLeftRight(leds,17,33);
+ rainbowRightLeft anim3=rainbowRightLeft(leds,34,50); // we initialize the animation (the global led strip, the first led, the last led)
+rainbowLeftRight anim4=rainbowLeftRight(leds,51,67);
 void setup() {
 
   FastLED.addLeds<NEOPIXEL, 6>(leds, NUM_LEDS);
     anim.setup();
    anim2.setup();
+     anim3.setup();
+   anim4.setup();
 }
 
 void loop() {
   anim.loop(); //to execute the animation
   anim2.loop();
-
+  anim3.loop(); //to execute the animation
+  anim4.loop();
 }
