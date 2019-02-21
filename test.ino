@@ -93,4 +93,5 @@ void loop() {
   anim2.loop();
   anim3.loop(); //to execute the animation
   anim4.loop();
+ FastLED.show();
 }
